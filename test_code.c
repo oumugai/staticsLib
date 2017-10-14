@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 int main(void){
-	initCalcStatistics(calc);
 	float inputData[] = {1.2, 2.3, 3.4, 5.6};
 	
 	initDataSet(test);
@@ -11,10 +10,10 @@ int main(void){
 	setData(&test2, inputData, sizeof(inputData)/sizeof(inputData[0]));
 
 	printf("%d\n", test.size);
-	//printf("%f\n", calc.standardDev(test));
-	//printf("%f\n", calc.sampleStandardDev(test));
-	//printf("%f\n",calc.correlation(test, test2));
-	printf("%f\n",calc.median(test));
+	//printf("%f\n", calcStatistics(test).standardDev);
+	//printf("%f\n", calcStatistics(test).sampleStandardDev);
+	//printf("%f\n", correlation(test, test2));
+	printf("%f\n",calcStatistics(test).median);
 	getchar();
 	return 0;
 }

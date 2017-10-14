@@ -1,7 +1,6 @@
 #include <math.h>
 #include "staticsStruct.h"
 
-#define initCalcStatistics(var) CalcStatistics var = initializeCalcStatistics();
 #define initDataSet(var) DataSet var = initializeDataSet();
 
 float sumElements(DataSet input);
@@ -37,17 +36,15 @@ void setData(DataSet *input, float data[], int size){
 	}
 }
 
-CalcStatistics initializeCalcStatistics(){
-    CalcStatistics initCalcSet;
-    initCalcSet.sum = sumElements;
-    initCalcSet.average = average;
-    initCalcSet.variance = variance;
-	initCalcSet.standardDev = standardDeviation;
-	initCalcSet.sampleVariance = sampleVariance;
-	initCalcSet.sampleStandardDev = sampleStandardDeviation;
-	initCalcSet.covariance = covariance;
-	initCalcSet.correlation = correlationCoefficient;
-	initCalcSet.median = median;
+statistics calcStatistics(DataSet input){
+    statistics initCalcSet;
+    initCalcSet.sum = sumElements(input);
+    initCalcSet.average = average(input);
+    initCalcSet.variance = variance(input);
+	initCalcSet.standardDev = standardDeviation(input);
+	initCalcSet.sampleVariance = sampleVariance(input);
+	initCalcSet.sampleStandardDev = sampleStandardDeviation(input);
+	initCalcSet.median = median(input);
     return initCalcSet;
 }
 
@@ -92,6 +89,10 @@ float sampleStandardDeviation(DataSet input){
     return sqrtf(sampleVariance(input));
 }
 
+float median(DataSet input){
+	return input.element[(int)(input.size/2)];
+}
+
 float covariance(DataSet inputX, DataSet inputY){
     float avex, avey;
     avex = average(inputX);
@@ -106,8 +107,4 @@ float covariance(DataSet inputX, DataSet inputY){
 
 float correlationCoefficient(DataSet inputX, DataSet inputY){
 	return covariance(inputX,inputY)/(standardDeviation(inputX)*standardDeviation(inputY));
-}
-
-float median(DataSet input){
-	return input.element[(int)(input.size/2)];
 }

@@ -1,6 +1,4 @@
-typedef struct{
-    float (*gaussian)();
-}calcDist;
+#include "staticsStruct.h"
 
 float gaussianDistribution(dataSet input){
 }

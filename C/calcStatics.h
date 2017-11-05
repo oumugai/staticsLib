@@ -47,8 +47,11 @@ statistics calcStatistics(DataSet input){
 	resultSet.sampleVariance = sampleVariance(input);
 	resultSet.sampleStandardDev = sampleStandardDeviation(input);
 	resultSet.median = median(input);
+<<<<<<< HEAD:C/calcStatics.h
 	resultSet.skewness = skewness(input);
 	resultSet.kurtosis = kurtosis(input);
+=======
+>>>>>>> 61f3efb1532a29e63cb8068f7eb36ec08dcebfc6:calcStatics.h
     return resultSet;
 }
 

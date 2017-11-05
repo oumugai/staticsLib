@@ -12,6 +12,8 @@ float sampleStandardDeviation(DataSet input);
 float covariance(DataSet inputX, DataSet inputY);
 float correlationCoefficient(DataSet inputX, DataSet inputY);
 float median(DataSet input);
+float skewness(DataSet input);
+float kurtosis(DataSet input);
 
 DataSet initializeDataSet(){
 	DataSet initData;
@@ -37,15 +39,17 @@ void setData(DataSet *input, float data[], int size){
 }
 
 statistics calcStatistics(DataSet input){
-    statistics initCalcSet;
-    initCalcSet.sum = sumElements(input);
-    initCalcSet.average = average(input);
-    initCalcSet.variance = variance(input);
-	initCalcSet.standardDev = standardDeviation(input);
-	initCalcSet.sampleVariance = sampleVariance(input);
-	initCalcSet.sampleStandardDev = sampleStandardDeviation(input);
-	initCalcSet.median = median(input);
-    return initCalcSet;
+    statistics resultSet;
+    resultSet.sum = sumElements(input);
+    resultSet.average = average(input);
+    resultSet.variance = variance(input);
+	resultSet.standardDev = standardDeviation(input);
+	resultSet.sampleVariance = sampleVariance(input);
+	resultSet.sampleStandardDev = sampleStandardDeviation(input);
+	resultSet.median = median(input);
+	resultSet.skewness = skewness(input);
+	resultSet.kurtosis = kurtosis(input);
+    return resultSet;
 }
 
 float sumElements(DataSet input){
@@ -108,3 +112,24 @@ float covariance(DataSet inputX, DataSet inputY){
 float correlationCoefficient(DataSet inputX, DataSet inputY){
 	return covariance(inputX,inputY)/(standardDeviation(inputX)*standardDeviation(inputY));
 }
+
+float skewness(DataSet input){
+	float ave = average(input);
+    int cnt;
+    float sum = 0;
+    for(cnt = 0;cnt < input.size;cnt++){
+        sum += powf(input.element[cnt] - ave, 3.0);
+    }
+    return sum/(float)input.size;
+}
+
+float kurtosis(DataSet input){
+	float ave = average(input);
+    int cnt;
+    float sum = 0;
+    for(cnt = 0;cnt < input.size;cnt++){
+        sum += powf(input.element[cnt] - ave, 3.0);
+    }
+    return sum/(float)input.size;
+}
+

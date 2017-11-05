@@ -7,6 +7,8 @@ typedef struct{
     float sum;
     float average;
     float variance;
+	float skewness;
+	float kurtosis;
 	float standardDev;
 	float sampleVariance;
 	float sampleStandardDev;

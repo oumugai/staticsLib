@@ -1,4 +1,4 @@
-#include "calcStatics.h"
+#include "staticsLib.h"
 #include <stdio.h>
 
 int main(void){
@@ -14,6 +14,7 @@ int main(void){
 	//printf("%f\n", calcStatistics(test).sampleStandardDev);
 	//printf("%f\n", correlation(test, test2));
 	printf("%f\n",calcStatistics(test).median);
+	printf("%f\n", convination(5, 3));
 	getchar();
 	return 0;
 }
